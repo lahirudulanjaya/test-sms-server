@@ -7,6 +7,10 @@ import Typography from "@material-ui/core/Typography";
 import Icon from "@material-ui/core/Icon";
 import { withSnackbar } from "notistack";
 import { Link } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
+import Avatar from "@material-ui/core/Avatar";
+
+import companyLogo from "./companyLogo.png";
 
 class App extends Component {
   constructor(props) {
@@ -85,104 +89,125 @@ class App extends Component {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          height: "100vh",
+          height: "99vh",
           width: "100%",
         }}
       >
         <CssBaseline />
-        <div style={{ width: "50%" }}>
-          <Typography
-            component="h1"
-            variant="h5"
-            style={{ textAlign: "center" }}
-          >
-            Meghadutha SMS Server Testing
-          </Typography>
-          <Typography
-            component="h6"
-            variant="body1"
-            style={{
-              textAlign: "left",
-              fontStyle: "italic",
-              fontSize: 15,
-              marginTop: 15,
-            }}
-          >
-            NOTE: Make sure your{" "}
-            <Link
-              target="_blank"
-              href={
-                "https://play.google.com/store/apps/details?id=com.dhahas.smsserver"
-              }
+        <Grid container spacing={2}>
+          <Grid item md={4} lg={4} xs={12}></Grid>
+          <Grid item md={4} lg={4} xs={12}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                marginBottom: 10,
+              }}
             >
-              Meghadutha Mobile SMS Server
-            </Link>{" "}
-            is running and{" "}
-            <Link
-              target="_blank"
-              href={
-                "https://github.com/lahirudulanjaya/SendSMS/releases/tag/0.0.1"
-              }
-            >
-              Meghadutha SMS Tool
-            </Link>{" "}
-            is installed.
-          </Typography>
-          <div>
-            <form noValidate>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="senders"
-                label="senders"
-                name="senders"
-                autoComplete="senders"
-                autoFocus
-                value={this.state.senders}
-                onChange={(e) => this.onChange(e)}
+              <Avatar
+                alt="Remy Sharp"
+                style={{ width: 100, height: 100 }}
+                src={companyLogo}
               />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="apiKey"
-                label="API Key"
-                name="apiKey"
-                autoComplete="senders"
-                autoFocus
-                value={this.state.apiKey}
-                onChange={(e) => this.onChange(e)}
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                multiline
-                rows={4}
-                rowsMax={10}
-                required
-                fullWidth
-                name="message"
-                label="message"
-                id="message"
-                autoComplete="message"
-                value={this.state.message}
-                onChange={(e) => this.onChange(e)}
-              />
-              <Button
-                disabled={this.state.loading}
-                variant="contained"
-                color="primary"
-                endIcon={<Icon>send</Icon>}
-                onClick={(e) => this.sendSMS(e)}
+            </div>
+            <div>
+              <Typography
+                component="h1"
+                variant="h5"
+                style={{ textAlign: "center" }}
               >
-                send
-              </Button>
-            </form>
-          </div>
-        </div>
+                Meghadutha SMS Server Testing
+              </Typography>
+              <Typography
+                component="h6"
+                variant="body1"
+                style={{
+                  textAlign: "left",
+                  fontStyle: "italic",
+                  fontSize: 15,
+                  marginTop: 15,
+                }}
+              >
+                NOTE: Make sure your{" "}
+                <Link
+                  target="_blank"
+                  href={
+                    "https://play.google.com/store/apps/details?id=com.dhahas.smsserver"
+                  }
+                >
+                  Meghadutha Mobile SMS Server
+                </Link>{" "}
+                is running and{" "}
+                <Link
+                  target="_blank"
+                  href={
+                    "https://github.com/lahirudulanjaya/SendSMS/releases/tag/0.0.1"
+                  }
+                >
+                  Meghadutha SMS Tool
+                </Link>{" "}
+                is installed.
+              </Typography>
+              <div>
+                <form noValidate>
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="senders"
+                    label="Senders"
+                    name="senders"
+                    autoComplete="senders"
+                    autoFocus
+                    value={this.state.senders}
+                    onChange={(e) => this.onChange(e)}
+                  />
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="apiKey"
+                    label="API Key"
+                    name="apiKey"
+                    autoComplete="senders"
+                    value={this.state.apiKey}
+                    onChange={(e) => this.onChange(e)}
+                  />
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    multiline
+                    rows={4}
+                    rowsMax={10}
+                    required
+                    fullWidth
+                    name="message"
+                    label="Message"
+                    id="message"
+                    autoComplete="message"
+                    value={this.state.message}
+                    onChange={(e) => this.onChange(e)}
+                  />
+                  <div style={{ flexDirection: "row-reverse" }}>
+                    <Button
+                      disabled={this.state.loading}
+                      variant="contained"
+                      color="primary"
+                      endIcon={<Icon>send</Icon>}
+                      onClick={(e) => this.sendSMS(e)}
+                    >
+                      send
+                    </Button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </Grid>
+          <Grid item md={4} lg={4} xs={12}></Grid>
+        </Grid>
       </Container>
     );
   }
