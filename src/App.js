@@ -45,9 +45,8 @@ class App extends Component {
     }
     const senders = this.state.senders.split(",");
     fetch("https://meghaduta.dhahas.com/sms/sendSMS", {
-      method: "PUT",
+      method: "POST",
       headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
