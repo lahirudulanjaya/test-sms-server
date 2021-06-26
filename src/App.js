@@ -11,6 +11,7 @@ import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
 
 import companyLogo from "./companyLogo.png";
+import Tooltip from "@material-ui/core/Tooltip";
 
 class App extends Component {
   constructor(props) {
@@ -94,7 +95,7 @@ class App extends Component {
       >
         <CssBaseline />
         <Grid container spacing={2}>
-          <Grid item md={4} lg={4} xs={12}></Grid>
+          <Grid item md={4} lg={4} xs={12}/>
           <Grid item md={4} lg={4} xs={12}>
             <div
               style={{
@@ -116,7 +117,7 @@ class App extends Component {
                 variant="h5"
                 style={{ textAlign: "center" }}
               >
-                Meghadutha SMS Server Testing
+                Meghadhutha SMS Server Testing
               </Typography>
               <Typography
                 component="h6"
@@ -150,19 +151,21 @@ class App extends Component {
               </Typography>
               <div>
                 <form noValidate>
-                  <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="senders"
-                    label="Senders"
-                    name="senders"
-                    autoComplete="senders"
-                    autoFocus
-                    value={this.state.senders}
-                    onChange={(e) => this.onChange(e)}
-                  />
+                  <Tooltip title="Please enter values separated by commas">
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="senders"
+                        label="Senders"
+                        name="senders"
+                        autoComplete="senders"
+                        autoFocus
+                        value={this.state.senders}
+                        onChange={(e) => this.onChange(e)}
+                    />
+                  </Tooltip>
                   <TextField
                     variant="outlined"
                     margin="normal"
