@@ -1,17 +1,17 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import Icon from "@material-ui/core/Icon";
-import { withSnackbar } from "notistack";
-import { Link } from "@material-ui/core";
+import {withSnackbar} from "notistack";
+import {Link} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
-
+import * as XLSX from 'xlsx';
 import companyLogo from "./companyLogo.png";
 import Tooltip from "@material-ui/core/Tooltip";
+import InformationDialog from "./component/InformationDialog";
 
 class App extends Component {
   constructor(props) {
@@ -21,12 +21,34 @@ class App extends Component {
       message: "",
       apiKey: "",
       loading: false,
+      open:false
     };
   }
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
+
+
+  handleFileChange = (e) => {
+    e.preventDefault();
+    const files = e.target.files,
+        file = files[0];
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const data = e.target.result;
+      let readData = XLSX.read(data, {type: 'binary'});
+      const sheetName = readData.SheetNames[0];
+      const sheet = readData.Sheets[sheetName];
+      const dataParse = XLSX.utils.sheet_to_json(sheet, {header: 1});
+      this.setState({senders: dataParse.toString()})
+    };
+    reader.readAsBinaryString(file)
+  }
+
+  openDialog=()=>{
+    this.setState({open:true});
+  }
 
   sendSMS = (e) => {
     this.setState({
@@ -81,6 +103,10 @@ class App extends Component {
       });
   };
 
+  closeInformationDialog = () => {
+    this.setState({open: false})
+  }
+
   render() {
     return (
       <Container
@@ -93,7 +119,6 @@ class App extends Component {
           width: "100%",
         }}
       >
-        <CssBaseline />
         <Grid container spacing={2}>
           <Grid item md={4} lg={4} xs={12}/>
           <Grid item md={4} lg={4} xs={12}>
@@ -151,6 +176,7 @@ class App extends Component {
               </Typography>
               <div>
                 <form noValidate>
+                  <div>
                   <Tooltip title="Please enter values separated by commas">
                     <TextField
                         variant="outlined"
@@ -166,6 +192,23 @@ class App extends Component {
                         onChange={(e) => this.onChange(e)}
                     />
                   </Tooltip>
+                    <div>
+                      <Button
+                          variant="contained"
+                          component="label"
+                      >
+                        Upload File
+                        <input
+                            type="file"
+                            accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                            hidden
+                            onChange={this.handleFileChange}
+                        />
+                      </Button>
+                      <i className="material-icons" style={{color:'blue',bottom:0}} onMouseEnter={()=>this.openDialog()}>info</i>
+                    </div>
+                  </div>
+                  <InformationDialog open = {this.state.open} handleClose={this.closeInformationDialog} />
                   <TextField
                     variant="outlined"
                     margin="normal"
