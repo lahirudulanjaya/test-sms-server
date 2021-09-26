@@ -11,7 +11,6 @@ import Avatar from "@material-ui/core/Avatar";
 import * as XLSX from "xlsx";
 import companyLogo from "./companyLogo.png";
 // import Tooltip from "@material-ui/core/Tooltip";
-import InformationDialog from "./component/InformationDialog";
 import FileUpload from "@mui/icons-material/FileUpload";
 
 class App extends Component {
@@ -162,7 +161,7 @@ class App extends Component {
                     "https://play.google.com/store/apps/details?id=com.dhahas.smsserver"
                   }
                 >
-                  Meghadutha Mobile SMS Server
+                  Meghadhutha Mobile SMS Server
                 </Link>{" "}
                 is running and{" "}
                 <Link
@@ -171,7 +170,7 @@ class App extends Component {
                     "https://github.com/lahirudulanjaya/SendSMS/releases/tag/0.0.1"
                   }
                 >
-                  Meghadutha SMS Tool
+                  Meghadhutha SMS Tool
                 </Link>{" "}
                 is installed.
               </Typography>
@@ -231,7 +230,7 @@ class App extends Component {
                       marginBottom: 5,
                     }}
                   >
-                    (NOTE: Now you can add senders using a excel file. Check
+                    (NOTE:You can add senders using a excel file. Check
                     this sample excel file{" "}
                     <Link
                       target="_blank"
@@ -277,10 +276,6 @@ class App extends Component {
                       info
                     </i>
                   </div> */}
-                  <InformationDialog
-                    open={this.state.open}
-                    handleClose={this.closeInformationDialog}
-                  />
                   <TextField
                     variant="outlined"
                     margin="normal"
