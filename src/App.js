@@ -1,17 +1,17 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Icon from "@material-ui/core/Icon";
-import {withSnackbar} from "notistack";
-import {Link} from "@material-ui/core";
+import { withSnackbar } from "notistack";
+import { IconButton, Input, Link } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
-import * as XLSX from 'xlsx';
+import * as XLSX from "xlsx";
 import companyLogo from "./companyLogo.png";
-import Tooltip from "@material-ui/core/Tooltip";
-import InformationDialog from "./component/InformationDialog";
+// import Tooltip from "@material-ui/core/Tooltip";
+import FileUpload from "@mui/icons-material/FileUpload";
 
 class App extends Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class App extends Component {
       message: "",
       apiKey: "",
       loading: false,
-      open:false
+      open: false,
     };
   }
 
@@ -29,26 +29,25 @@ class App extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-
   handleFileChange = (e) => {
     e.preventDefault();
     const files = e.target.files,
-        file = files[0];
+      file = files[0];
     const reader = new FileReader();
     reader.onload = (e) => {
       const data = e.target.result;
-      let readData = XLSX.read(data, {type: 'binary'});
+      let readData = XLSX.read(data, { type: "binary" });
       const sheetName = readData.SheetNames[0];
       const sheet = readData.Sheets[sheetName];
-      const dataParse = XLSX.utils.sheet_to_json(sheet, {header: 1});
-      this.setState({senders: dataParse.toString()})
+      const dataParse = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+      this.setState({ senders: dataParse.toString() });
     };
-    reader.readAsBinaryString(file)
-  }
+    reader.readAsBinaryString(file);
+  };
 
-  openDialog=()=>{
-    this.setState({open:true});
-  }
+  openDialog = () => {
+    this.setState({ open: true });
+  };
 
   sendSMS = (e) => {
     this.setState({
@@ -104,8 +103,8 @@ class App extends Component {
   };
 
   closeInformationDialog = () => {
-    this.setState({open: false})
-  }
+    this.setState({ open: false });
+  };
 
   render() {
     return (
@@ -120,7 +119,7 @@ class App extends Component {
         }}
       >
         <Grid container spacing={2}>
-          <Grid item md={4} lg={4} xs={12}/>
+          <Grid item md={4} lg={4} xs={12} />
           <Grid item md={4} lg={4} xs={12}>
             <div
               style={{
@@ -152,6 +151,7 @@ class App extends Component {
                   fontStyle: "italic",
                   fontSize: 15,
                   marginTop: 15,
+                  marginBottom: 20,
                 }}
               >
                 NOTE: Make sure your{" "}
@@ -161,7 +161,7 @@ class App extends Component {
                     "https://play.google.com/store/apps/details?id=com.dhahas.smsserver"
                   }
                 >
-                  Meghadutha Mobile SMS Server
+                  Meghadhutha Mobile SMS Server
                 </Link>{" "}
                 is running and{" "}
                 <Link
@@ -170,54 +170,123 @@ class App extends Component {
                     "https://github.com/lahirudulanjaya/SendSMS/releases/tag/0.0.1"
                   }
                 >
-                  Meghadutha SMS Tool
+                  Meghadhutha SMS Tool
                 </Link>{" "}
                 is installed.
               </Typography>
               <div>
                 <form noValidate>
-                  <div>
-                  <Tooltip title="Please enter values separated by commas">
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="senders"
-                        label="Senders"
-                        name="senders"
-                        autoComplete="senders"
-                        autoFocus
-                        value={this.state.senders}
-                        onChange={(e) => this.onChange(e)}
-                    />
-                  </Tooltip>
-                    <div>
-                      <Button
-                          variant="contained"
-                          component="label"
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    placeholder="Ex: +442071838750,+442071838780,+442071838758"
+                    required
+                    fullWidth
+                    id="senders"
+                    label="Type senders or Upload using file"
+                    name="senders"
+                    InputProps={{
+                      endAdornment: (
+                        <div
+                          style={{
+                            justifyContent: "center",
+                            alignItems: "center",
+                            textAlign: "center",
+                          }}
+                        >
+                          <label
+                            htmlFor="icon-button-file"
+                            style={{ margin: 0, padding: 0 }}
+                          >
+                            <Input
+                              style={{ display: "none" }}
+                              accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                              id="icon-button-file"
+                              type="file"
+                              onChange={this.handleFileChange}
+                            />
+                            <IconButton
+                              color="primary"
+                              aria-label="upload picture"
+                              component="span"
+                            >
+                              <FileUpload />
+                            </IconButton>
+                          </label>
+                        </div>
+                      ),
+                    }}
+                    autoComplete={false}
+                    value={this.state.senders}
+                    onChange={(e) => this.onChange(e)}
+                  />
+                  <Typography
+                    component="h6"
+                    variant="body1"
+                    style={{
+                      textAlign: "left",
+                      fontStyle: "italic",
+                      fontSize: 15,
+                      marginBottom: 5,
+                    }}
+                  >
+                    (NOTE:You can add senders using a excel file. Check
+                    this sample excel file{" "}
+                    <Link
+                      target="_blank"
+                      href={
+                        "https://docs.google.com/spreadsheets/d/10ETqIFjXyDrjjhLpRGwqih7Eg7AidiyZzV00q1s6KyI/edit?usp=sharing"
+                      }
+                    >
+                      link
+                    </Link>
+                    )
+                  </Typography>
+                  {/* <div>
+                    <label htmlFor="icon-button-file">
+                      <Input
+                        style={{ display: "none" }}
+                        accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                        id="icon-button-file"
+                        type="file"
+                        onChange={this.handleFileChange}
+                      />
+                      <IconButton
+                        color="primary"
+                        aria-label="upload picture"
+                        component="span"
                       >
-                        Upload File
-                        <input
+                        <FileUpload />
+                      </IconButton>
+                    </label>
+                    <Button variant="contained" component="label">
+                          Upload File
+                          <input
                             type="file"
                             accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                             hidden
                             onChange={this.handleFileChange}
-                        />
-                      </Button>
-                      <i className="material-icons" style={{color:'blue',bottom:0}} onMouseEnter={()=>this.openDialog()}>info</i>
-                    </div>
-                  </div>
-                  <InformationDialog open = {this.state.open} handleClose={this.closeInformationDialog} />
+                          />
+                        </Button>
+                    <i
+                      className="material-icons"
+                      style={{ color: "blue", bottom: 0 }}
+                      onMouseEnter={() => this.openDialog()}
+                    >
+                      info
+                    </i>
+                  </div> */}
                   <TextField
                     variant="outlined"
                     margin="normal"
                     required
                     fullWidth
+                    type="password"
                     id="apiKey"
-                    label="API Key"
+                    placeholder="Ex: 123456789abcdefghijklmno"
+                    label="Type API Key"
                     name="apiKey"
-                    autoComplete="senders"
+                    autoComplete={false}
                     value={this.state.apiKey}
                     onChange={(e) => this.onChange(e)}
                   />
@@ -230,9 +299,9 @@ class App extends Component {
                     required
                     fullWidth
                     name="message"
-                    label="Message"
+                    label="Type broadcasting message"
                     id="message"
-                    autoComplete="message"
+                    autoComplete={false}
                     value={this.state.message}
                     onChange={(e) => this.onChange(e)}
                   />
