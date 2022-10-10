@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# Meghadhutha SMS server demo application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a demo application for the Meghadhutha SMS server(https://meghadhutha-test-server.herokuapp.com/)
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Meghadhutha SMS server**
+ 
+Meghadhutha SMS server is an automated SMS sending app which can be used for OTP sending, SMS broadcasting, etc. Unlike other SMS services, Meghadhutha uses your own mobile phone as an SMS server, which means you can build your own SMS server without using expensive 3rd party services. Meghadhutha SMS server is mostly suitable for small businesses, University projects, and hobby projects.
+ 
+**Pre-requisites**
+ 
+You need to have an Android mobile device with a SIM card inserted. And you need to install the Meghadhutha SMS tool app. 
+ 
+**Meghadhutha SMS tool**
+ 
+Since Google PlayStore keeps restricting SMS send permission, for the SMS sending task we have developed another open-source tool called Meghadhutha SMS tool.
+ 
+**How to use**
+ 
+Open Meghadhutha SMS server and register after that you can get API details with your API key to integrate SMS sending features to your application.
+ 
+Meghadhutha SMS server tutorial playlist:
+https://www.youtube.com/watch?v=O2KsJCOXl7c&list=PL4ChGZATtvUUWGXT9CYWRXIt2Agio3fTY
+ 
+Meghadhutha SMS server mobile app :
+https://play.google.com/store/apps/details?id=com.dhahas.smsserver&hl=en_US&gl=US
+ 
+Meghadhutha SMS tool mobile app : https://github.com/lahirudulanjaya/SendSMS/releases/tag/0.0.1
+ 
+ Meghadhutha SMS server demo application and source code
+https://meghadhutha-test-server.herokuapp.com/
+https://github.com/lahirudulanjaya/test-sms-server
+ 
+Meghadhutha SMS server complete guide at Medium : 
+https://dahastechnologies.medium.com/meghadhutha-sms-server-d35d2ef60ca1
+ 
+Meghadhutha SMS server complete guide at Youtube part 1(Installation): https://www.youtube.com/watch?v=O2KsJCOXl7c
+ 
+Meghadhutha SMS server complete guide at Youtube part 2(Usage): https://www.youtube.com/watch?v=HE7E3tIgCHs
