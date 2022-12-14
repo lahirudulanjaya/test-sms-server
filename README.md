@@ -1,6 +1,6 @@
 # Meghadhutha SMS server demo application
 
-This is a demo application for the Meghadhutha SMS server(https://meghadhutha-test-server.herokuapp.com/)
+This is a demo application for the Meghadhutha SMS server(https://test-meghadhutha.onrender.com/)
 
 **Meghadhutha SMS server**
  
@@ -27,7 +27,7 @@ https://play.google.com/store/apps/details?id=com.dhahas.smsserver&hl=en_US&gl=U
 Meghadhutha SMS tool mobile app : https://github.com/lahirudulanjaya/SendSMS/releases/tag/0.0.1
  
  Meghadhutha SMS server demo application and source code
-https://meghadhutha-test-server.herokuapp.com/
+https://test-meghadhutha.onrender.com/
 https://github.com/lahirudulanjaya/test-sms-server
  
 Meghadhutha SMS server complete guide at Medium : 
